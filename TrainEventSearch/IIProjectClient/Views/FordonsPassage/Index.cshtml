@@ -1,0 +1,243 @@
+﻿@model IIProjectClient.Models.Page
+
+@{
+    int ID = 0;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- somformulär, anvndarnamn behövs läggas till, detta kan sparas i sessionen förslagsvis då man kanske inte vill ha det i URL:n om sökresultat länkas eller liknande -->
+@if (Session["user"] != null)
+{
+
+    <div class="container-fluid">
+        <h2>Sök fordonspassager</h2>
+        @using (Html.BeginForm("Search", "FordonsPassage", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            <div class="row">
+
+                <div class="input-daterange col-md-6" id="datepicker">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><strong>Från</strong></span>
+                            @if (Model.Start.HasValue)
+                            {
+                                <input type="text" class="form-control form-inline" name="start" value="@Model.Start.Value.ToString("yyyy-MM-dd")" required />
+                            }
+                            else
+                            {
+                                <input type="text" class="form-control form-inline" name="start" required />
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><strong>Till</strong></span>
+                            @if (Model.End.HasValue)
+                            {
+                                <input type="text" class="form-control form-inline" name="end" value="@Model.End.Value.ToString("yyyy-MM-dd")" required />
+                            }
+                            else
+                            {
+                                <input type="text" class="form-control form-inline" name="end" required />
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><strong>Plats</strong></span>
+                        @Html.DropDownListFor(m => m.Platser, new SelectList(Model.Platser, "PlatsEPC", "PlatsNamn", Model.Plats), new { @class = "form-control", required = "" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><strong>Träffar per sida</strong></span>
+                        <select name="antaltraffar" id="antaltraffar" class="form-control" required>
+                            <option>5</option>
+                            <option>10</option>
+                            <option>15</option>
+                            <option>20</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="submit" value="Sök" class="btn btn-success form-inline" />
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+
+    if (Model.TotaltAntalPassager.HasValue)
+    {
+        <div class="container-fluid">
+            <hr/>
+            <p>Totalt antal passager: @Model.TotaltAntalPassager.Value.ToString()</p>
+
+            @foreach (var item in Model.FordonsPassager)
+            {
+                ID = ID + 1;
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#@ID">
+                                    @Html.DisplayFor(modelItem => item.Tid) - @Html.DisplayFor(modelItem => item.Plats.PlatsNamn)
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="@ID" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <strong>Fordonets EPC</strong><br />
+                                        @(item.Fordon.FordonsEPC.IsEmpty() ? "Information saknas" : item.Fordon.FordonsEPC)<br />
+                                        <strong>Platens EPC</strong><br />
+                                        @(item.Plats.PlatsEPC.IsEmpty() ? "Information saknas" : item.Plats.PlatsEPC)<br />
+                                        <strong>Tid</strong><br />
+                                        @(item.Tid.ToString().IsEmpty() ? "Information saknas" : item.Tid.ToShortTimeString())
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <strong>Plats</strong><br />
+                                        @(item.Plats.PlatsNamn.IsEmpty() ? "Information saknas" : item.Plats.PlatsNamn)<br />
+                                        <strong>Fordonets EVN</strong><br />
+                                        @(item.Fordon.FordonsEVN.IsEmpty() ? "Information saknas" : item.Fordon.FordonsEVN)<br />
+                                        <strong>Fordonsinnhavare</strong><br />
+                                        @(item.Fordon.Fordonsinnehavare.IsEmpty() ? "Information saknas" : item.Fordon.Fordonsinnehavare)
+
+
+
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <strong>Underhållsansvarigt Företag</strong><br />
+                                        @(item.Fordon.UnderhållsAnsvarig.IsEmpty() ? "Information saknas" : item.Fordon.UnderhållsAnsvarig)<br />
+                                        <strong>Fordonstyp</strong><br />
+                                        @(item.Fordon.Fordonstyp.IsEmpty() ? "Information saknas" : item.Fordon.Fordonstyp)<br />
+                                        <strong>Godkännande</strong><br />
+                                        @if (item.Fordon.Godkännande.GiltigtFrom == null)
+                                        {
+                                            <p>Information saknas</p>
+                                        }
+                                        else
+                                        {
+
+                                            <span>Godkänd: </span>
+                                            @Html.DisplayFor(modelItem => item.Fordon.Godkännande.Godkänt)
+
+                                            <br />
+                                            <span>Giltigt från: </span>
+                                            @Html.DisplayFor(modelItem => item.Fordon.Godkännande.GiltigtFrom)
+                                            <br />
+                                            <span>Giltigt till: </span>
+                                            @Html.DisplayFor(modelItem => item.Fordon.Godkännande.GiltigtTom)
+
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+
+
+            <!-- Starta paginationlista-->
+            <ul class="pagination pagination-sm">
+                <!-- kontrollera om detta är den första sidan, isf. lägg till disable-klass på länken så den ej är klickbar-->
+                @if (Model.Föregåendesida)
+                {
+                    <li>
+                        <a href="@Url.Action("Search", "FordonsPassage", new { Platser = Model.Plats, start = Model.Start.Value.ToString("yyyy-MM-dd"), end = Model.End.Value.ToString("yyyy-MM-dd"), page = (Model.NuvarandeSida - 1) })">
+                            &laquo;
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="disabled">
+                        <a href="#">
+                            &laquo;
+                        </a>
+                    </li>
+                }
+                <!-- Loopa igenom sidorna och generera länkar-->
+                @for (int i = 1; i <= Model.TotaltAntalSidor; i++)
+                {
+                    if (i == Model.NuvarandeSida)
+                    {
+                        <li class="active">
+                            <a href="#">
+                                @i
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="@Url.Action("Search", "FordonsPassage", new { Platser = Model.Plats, start = Model.Start.Value.ToString("yyyy-MM-dd"), end = Model.End.Value.ToString("yyyy-MM-dd"), page = i })">
+                                @i
+                            </a>
+                        </li>
+                    }
+
+
+                }
+                <!-- Kontrollera om det är sista sidan, lägg till disable-klass så den ej är klickbar isf. -->
+                @if (Model.Nästasida)
+                {
+                    <li>
+                        <a href="@Url.Action("Search", "FordonsPassage", new { Platser = Model.Plats, start = Model.Start.Value.ToString("yyyy-MM-dd"), end = Model.End.Value.ToString("yyyy-MM-dd"), page = (Model.NuvarandeSida + 1) })">
+                            &raquo;
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="disabled">
+                        <a href="#">
+                            &raquo;
+                        </a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    }
+
+
+}
+else
+{
+        <h2>Var god logga in för att söka fordonspassager</h2>
+
+}
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.input-daterange').datepicker({
+                    weekStart: 1,
+                    format: "yyyy-mm-dd",
+                    startDate: "2011-03-25",
+                    endDate: "2011-11-10"
+                });
+            });
+
+        </script>
+

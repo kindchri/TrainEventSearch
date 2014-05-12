@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - RailWayInfo</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/Bootstrap")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+    <header>
+        <div class="Container">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-brand">@Html.ActionLink("RailWayInfo", "Index", "")</div>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav"></ul>
+
+
+                        @if (Session["user"] == null)
+                        {
+                            <div class="navbar-form navbar-right">
+                                <div class="form-group">
+
+                                    @using (Html.BeginForm("Login", "UserAuthentification", FormMethod.Post))
+                                    {
+                                        <input type="text" name="user" class="input-sm form-control" id="user" />
+                                            <!--<input type="password" name="password" class="input-sm form-control" id="password" />-->
+                                        <input type="submit" value="Logga in" class="btn btn-success form-inline" />
+                                    }
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="navbar-form navbar-right">
+                                <div class="form-group">
+
+
+                                    @using (Html.BeginForm("Logout", "UserAuthentification", FormMethod.Post))
+                                    {
+
+                                        <div class="label" style="color:black; font-size:100%;">
+                                            Välkommen:&nbsp;
+                                            @Session["user"].ToString()
+                                        </div>
+                                        <input type="submit" value="Logga ut" class="btn btn-success form-inline" />
+                                    }
+                                </div>
+                            </div>
+                        }
+                        @if (Session["loginerror"] != null)
+                        {
+
+                            <div class="col-lg-2" style="float:right;">
+                                <strong>Ooops!</strong> Någon sådan användare finns inte.
+                            </div>
+
+                        }
+
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("featured", required: false)
+        
+            @RenderBody()
+        
+    </div>
+
+
+
+
+
+</body>
+</html>

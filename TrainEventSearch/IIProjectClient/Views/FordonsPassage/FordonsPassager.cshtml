@@ -1,0 +1,78 @@
+﻿@model IEnumerable<IIProjectClient.Models.FordonsPassage>
+
+@{
+    ViewBag.Title = "FordonsPassager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>FordonsPassager</h2>
+
+
+
+<p>
+
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PasseradTid)
+        </th>           
+        <th>
+            Plats EPC
+        </th>   
+        <th>
+            Plats Namn
+        </th> 
+        <th>
+            Fordons EPC
+        </th>
+        <th>
+            Fordons EVN
+        </th>   
+        <th>
+            Fordonsinnehavarare
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.Underhållsansvarig)
+        </th>
+        <th>
+            Fordonstyp
+        </th>  
+        <th>
+            Godkännande
+        </th>     
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasseradTid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasseradPlats.PlatsEPC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasseradPlats.PlatsNamn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasseratFordon.FordonsEPC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasseratFordon.FordonsEVN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasseratFordon.Fordonsinnehavare)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Underhållsansvarig)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasseratFordon.Fordonstyp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasseratFordon.Godkännande)
+        </td>
+    </tr>
+}
+
+</table>

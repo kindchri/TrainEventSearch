@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IIProjectService", "IIProjectService\IIProjectService.csproj", "{2ABE2731-3A95-4211-A84F-FC19FF179450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IIProjectClient", "IIProjectClient\IIProjectClient.csproj", "{4A72AE5B-7207-43F5-8C9A-AE290D44EA5F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2ABE2731-3A95-4211-A84F-FC19FF179450} = {2ABE2731-3A95-4211-A84F-FC19FF179450}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://www.petterannerwall.se:8080/tfs/projektarbete%20informationsinfrastruktur
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = IIProjectService\\IIProjectService.csproj
+		SccProjectName1 = IIProjectService
+		SccLocalPath1 = IIProjectService
+		SccProjectUniqueName2 = IIProjectClient\\IIProjectClient.csproj
+		SccProjectName2 = IIProjectClient
+		SccLocalPath2 = IIProjectClient
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2ABE2731-3A95-4211-A84F-FC19FF179450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ABE2731-3A95-4211-A84F-FC19FF179450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ABE2731-3A95-4211-A84F-FC19FF179450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ABE2731-3A95-4211-A84F-FC19FF179450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A72AE5B-7207-43F5-8C9A-AE290D44EA5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A72AE5B-7207-43F5-8C9A-AE290D44EA5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A72AE5B-7207-43F5-8C9A-AE290D44EA5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A72AE5B-7207-43F5-8C9A-AE290D44EA5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="051efbb4-f4cc-4bad-adc4-281f02f09bde" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="System.Xml.Linq" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50720/FordonPassageService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FordonPassageService.disco" MetadataType="Disco" ID="87327e13-b53b-4b79-8304-62423d2ab986" SourceId="1" SourceUrl="http://localhost:50720/FordonPassageService.svc?disco" />
+    <MetadataFile FileName="FordonPassageService.xsd" MetadataType="Schema" ID="d03316ad-1af8-4205-b044-b02b5cccaedc" SourceId="1" SourceUrl="http://localhost:50720/FordonPassageService.svc?xsd=xsd1" />
+    <MetadataFile FileName="FordonPassageService2.xsd" MetadataType="Schema" ID="526559aa-f4d3-4037-912d-0cc068e162ca" SourceId="1" SourceUrl="http://localhost:50720/FordonPassageService.svc?xsd=xsd0" />
+    <MetadataFile FileName="FordonPassageService.wsdl" MetadataType="Wsdl" ID="e4d2ca47-d538-4407-b824-bbe5e86a24e3" SourceId="1" SourceUrl="http://localhost:50720/FordonPassageService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

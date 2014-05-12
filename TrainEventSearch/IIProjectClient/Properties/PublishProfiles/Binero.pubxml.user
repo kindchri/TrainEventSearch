@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAsHuRJLk550ycnwO4X6vQGAAAAAACAAAAAAAQZgAAAAEAACAAAAAc4XlsSrzaY22Zvo58cFkilfp3y6mNz0E2BbRALbaKtQAAAAAOgAAAAAIAACAAAAAfHc60L2rAkb30mDQbk6B3b6pddDy/AzTvyZu84iqnoCAAAAD7FfbNZdPeKM2QBZ2BG/i1r7fFgUlzqxteKf5U2+H7PkAAAABvEEvBEVbuM5+p+Ijh2Qz3bZ6dmAsU8W7luivuk5wynrctGwG9iplHAJIXghHg4kyhWBAYXNiyHIhKn0etW0ER</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ftp.traineventsearch.kindesjo.se/traineventsearch.kindesjo.se/public_html</_PublishTargetUrl>
+  </PropertyGroup>
+</Project>

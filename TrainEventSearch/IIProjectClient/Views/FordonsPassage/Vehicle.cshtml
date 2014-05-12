@@ -1,0 +1,22 @@
+﻿@model System.Xml.Linq.XElement
+@{
+    ViewBag.Title = "Vehicle";
+}
+
+<h2>Vehicle</h2>
+@using (Html.BeginForm("Vehicle", "FordonsPassage", FormMethod.Post))
+{
+    <form role="form">
+        <div class="form-group">
+            @Html.Label("Sök EPC:")
+            @Html.TextBox("sökSträng")<input type="submit" value="Sök" />
+        </div>
+    </form>
+}
+
+    @if (Model != null)
+    {
+        <textarea style="width: 1000px;" rows="25">
+        @Model.ToString();
+        </textarea>
+    }
